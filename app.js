@@ -6,11 +6,11 @@ var app = express();
 
 app.get('/', function (req, res, next) {
   superagent.get('https://cnodejs.org/')
-    .end(function (err, sres) {
+    .end(function (err, res) {
       if (err) {
         return next(err);
       }
-      var $ = cheerio.load(sres.text);
+      var $ = cheerio.load(res.text);
       var items = [];
       $('#topic_list .topic_title').each(function (idx, element) {
         var $element = $(element);
